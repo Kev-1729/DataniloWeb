@@ -1,0 +1,79 @@
+<div class="countdown">
+  <div class="countdown-item">
+    <span id="days" class="number">00</span>
+    <span class="label">D</span>
+  </div>
+  <div class="countdown-item">
+    <span id="hours" class="number">00</span>
+    <span class="label">H</span>
+  </div>
+  <div class="countdown-item">
+    <span id="minutes" class="number">00</span>
+    <span class="label">M</span>
+  </div>
+  <div class="countdown-item">
+    <span id="seconds" class="number">00</span>
+    <span class="label">S</span>
+  </div>
+</div>
+
+<style>
+  .countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #021d59;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  .countdown-item {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 10px;
+    color: #00164c;
+    font-weight: bold;
+    text-align: center;
+	flex-direction: row;
+  }
+  .number{
+	font-size: 40px;
+  }
+
+</style>
+
+<script is:inline>
+	function startCountdown(targetDate) {
+	  const countdown = document.getElementById('countdown');
+	  const target = new Date(targetDate);
+  
+	  function updateCountdown() {
+		const now = new Date();
+		const difference = target - now;
+  
+		if (difference > 0) {
+		  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+		  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+		  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+  
+		  document.getElementById("days").textContent = days;
+		  document.getElementById("hours").textContent = hours;
+		  document.getElementById("minutes").textContent = minutes;
+		  document.getElementById("seconds").textContent = seconds;
+		} else {
+		  countdown.textContent = "¡El tiempo ha terminado!";
+		}
+	  }
+  
+	  setInterval(updateCountdown, 1000);
+	}
+  
+	document.addEventListener('DOMContentLoaded', function () {
+	  startCountdown("2024-10-05T08:00:00");
+	});
+</script>

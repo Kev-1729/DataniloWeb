@@ -1,5 +1,7 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel'; // Importa el adaptador para Vercel
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  output: 'server', // Esto es importante para usar Vercel como servidor
+  adapter: vercel(), // Configura el adaptador de Vercel
+});
